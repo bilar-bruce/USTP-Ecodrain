@@ -5,14 +5,14 @@ import { useState } from 'react';
 export default function CisternMap() {
     const [activeId, setActiveId] = useState(1);
 
-    // Adjusted coordinates based on the new map's layout and building numbers
+    // Initial recalibrated estimates based on the original image layout
     const cisterns = [
-        { id: 1, name: 'Cistern 1', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 87, location: "Girl's Trade Building (Bldg 24)", top: '38%', left: '26%', needsMaintenance: false },
-        { id: 2, name: 'Cistern 2', sensor: 'Online', quality: 'Clean', filter: 'Maintenance', capacity: 92, location: 'Old Engineering Building (Bldg 5)', top: '56%', left: '68%', needsMaintenance: true },
+        { id: 1, name: 'Cistern 1', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 87, location: "Girl's Trade Building (Bldg 24)", top: '33%', left: '24%', needsMaintenance: false },
+        { id: 2, name: 'Cistern 2', sensor: 'Online', quality: 'Clean', filter: 'Maintenance', capacity: 92, location: 'Old Engineering Building (Bldg 5)', top: '45%', left: '74%', needsMaintenance: true },
         { id: 3, name: 'Cistern 3', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 64, location: 'Open Field', top: '22%', left: '46%', needsMaintenance: false },
-        { id: 4, name: 'Cistern 4', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 58, location: 'ICT Building (Bldg 9)', top: '48%', left: '33%', needsMaintenance: false },
-        { id: 5, name: 'Cistern 5', sensor: 'Online', quality: 'Turbid', filter: 'Operational', capacity: 90, location: 'Admin Building (Bldg 10)', top: '68%', left: '55%', needsMaintenance: false },
-        { id: 6, name: 'Cistern 6', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 42, location: 'Gymnasium (Bldg 15/16)', top: '45%', left: '50%', needsMaintenance: false },
+        { id: 4, name: 'Cistern 4', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 58, location: 'ICT Building (Bldg 9)', top: '35%', left: '64%', needsMaintenance: false },
+        { id: 5, name: 'Cistern 5', sensor: 'Online', quality: 'Turbid', filter: 'Operational', capacity: 90, location: 'Cafeteria (Bldg 20)', top: '55%', left: '54%', needsMaintenance: false },
+        { id: 6, name: 'Cistern 6', sensor: 'Online', quality: 'Clean', filter: 'Maintenance', capacity: 42, location: 'Food Innovation Center (Bldg 28)', top: '37%', left: '46%', needsMaintenance: true },
     ];
 
     const activeCistern = cisterns.find(c => c.id === activeId);
@@ -26,18 +26,18 @@ export default function CisternMap() {
             <Head title="Cistern Map" />
 
             <div className="flex gap-6 h-[calc(100vh-5rem)]">
-                {/* Left Area: Interactive Map */}
-                <div className="flex-1 bg-[#12151c] rounded-xl overflow-hidden relative shadow-lg border border-gray-800 flex items-center justify-center">
+                {/* Left Area: Interactive Map Container */}
+                <div className="flex-1 bg-[#12151c] rounded-xl overflow-y-auto p-6 shadow-lg border border-gray-800 flex items-start justify-center">
                     
-                    {/* The Map Image with CSS Dark Mode Filters */}
-                    <img 
-                        src="/images/ustp-map.jpeg" 
-                        alt="USTP Campus Map" 
-                        className="absolute inset-0 w-full h-full object-contain invert hue-rotate-180 contrast-125 brightness-90"
-                    />
-                    
-                    {/* Interactive Markers Container */}
-                    <div className="relative w-full h-full">
+                    {/* The Shrink-Wrapped Coordinate System */}
+                    <div className="relative w-full max-w-3xl">
+                        <img 
+                            src="/images/ustp-map.jpeg" 
+                            alt="USTP Campus Map" 
+                            className="w-full h-auto rounded-xl shadow-md"
+                        />
+                        
+                        {/* Interactive Markers */}
                         {cisterns.map((cistern) => (
                             <button
                                 key={cistern.id}
@@ -45,7 +45,11 @@ export default function CisternMap() {
                                 style={{ top: cistern.top, left: cistern.left }}
                                 className="absolute transform -translate-x-1/2 -translate-y-1/2 group focus:outline-none z-10"
                             >
-                                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-xl transition-all duration-300 ${activeId === cistern.id ? 'bg-blue-600 text-white scale-110 ring-4 ring-blue-500/50' : 'bg-[#12151c] text-gray-300 hover:bg-gray-800'}`}>
+                                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold shadow-xl transition-all duration-300 ${
+                                    activeId === cistern.id 
+                                        ? 'bg-blue-600 text-white scale-110 ring-4 ring-blue-500/50' 
+                                        : 'bg-gray-900 text-gray-300 hover:bg-gray-800 ring-2 ring-gray-700'
+                                }`}>
                                     C{cistern.id}
                                 </div>
                             </button>
