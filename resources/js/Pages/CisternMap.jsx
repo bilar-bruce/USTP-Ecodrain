@@ -8,11 +8,11 @@ export default function CisternMap() {
     // Initial recalibrated estimates based on the original image layout
     const cisterns = [
         { id: 1, name: 'Cistern 1', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 87, location: "Girl's Trade Building (Bldg 24)", top: '33%', left: '24%', needsMaintenance: false },
-        { id: 2, name: 'Cistern 2', sensor: 'Online', quality: 'Clean', filter: 'Maintenance', capacity: 92, location: 'Old Engineering Building (Bldg 5)', top: '45%', left: '74%', needsMaintenance: true },
+        { id: 2, name: 'Cistern 2', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 92, location: 'Old Engineering Building (Bldg 5)', top: '45%', left: '74%', needsMaintenance: false },
         { id: 3, name: 'Cistern 3', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 64, location: 'Open Field', top: '22%', left: '46%', needsMaintenance: false },
         { id: 4, name: 'Cistern 4', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 58, location: 'ICT Building (Bldg 9)', top: '35%', left: '64%', needsMaintenance: false },
-        { id: 5, name: 'Cistern 5', sensor: 'Online', quality: 'Turbid', filter: 'Operational', capacity: 90, location: 'Cafeteria (Bldg 20)', top: '55%', left: '54%', needsMaintenance: false },
-        { id: 6, name: 'Cistern 6', sensor: 'Online', quality: 'Clean', filter: 'Maintenance', capacity: 42, location: 'Food Innovation Center (Bldg 28)', top: '37%', left: '46%', needsMaintenance: true },
+        { id: 5, name: 'Cistern 5', sensor: 'Online', quality: 'Clean', filter: 'Operational', capacity: 90, location: 'Cafeteria (Bldg 20)', top: '55%', left: '54%', needsMaintenance: false },
+        { id: 6, name: 'Cistern 6', sensor: 'Online', quality: 'Turbid', filter: 'Maintenance', capacity: 42, location: 'Food Innovation Center (Bldg 28)', top: '37%', left: '46%', needsMaintenance: true },
     ];
 
     const activeCistern = cisterns.find(c => c.id === activeId);

@@ -4,11 +4,11 @@ import { Head } from '@inertiajs/react';
 export default function Dashboard() {
     const cisterns = [
         { id: 1, name: 'Cistern 1', level: 87, sensor: 'ONLINE', quality: 'CLEAN', filter: 'Operational', needsMaintenance: false },
-        { id: 2, name: 'Cistern 2', level: 92, sensor: 'ONLINE', quality: 'CLEAN', filter: 'Requires Maintenance', needsMaintenance: true },
+        { id: 2, name: 'Cistern 2', level: 92, sensor: 'ONLINE', quality: 'CLEAN', filter: 'Operational', needsMaintenance: false },
         { id: 3, name: 'Cistern 3', level: 64, sensor: 'ONLINE', quality: 'CLEAN', filter: 'Operational', needsMaintenance: false },
         { id: 4, name: 'Cistern 4', level: 58, sensor: 'ONLINE', quality: 'CLEAN', filter: 'Operational', needsMaintenance: false },
         { id: 5, name: 'Cistern 5', level: 90, sensor: 'ONLINE', quality: 'CLEAN', filter: 'Operational', needsMaintenance: false },
-        { id: 6, name: 'Cistern 6', level: 42, sensor: 'ONLINE', quality: 'CLEAN', filter: 'Requires Maintenance', needsMaintenance: true },
+        { id: 6, name: 'Cistern 6', level: 42, sensor: 'ONLINE', quality: 'TURBID', filter: 'Requires Maintenance', needsMaintenance: true },
     ];
 
     return (
@@ -70,8 +70,10 @@ export default function Dashboard() {
                                 Sensor: <span className="text-green-400 font-medium">{cistern.sensor}</span>
                             </p>
                             <p className="text-sm text-gray-400 flex gap-2 items-center">
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                                Water Quality: <span className="text-blue-400 font-medium">{cistern.quality}</span>
+                                <span className={`w-1.5 h-1.5 rounded-full ${cistern.quality === 'CLEAN' ? 'bg-blue-500' : 'bg-yellow-500'}`}></span>
+                                Water Quality: <span className={`${cistern.quality === 'CLEAN' ? 'text-blue-400' : 'text-yellow-400'} font-medium`}>
+                                    {cistern.quality}
+                                </span>
                             </p>
                             <p className="text-sm text-gray-400 flex gap-2 items-center">
                                 <span className={`w-1.5 h-1.5 rounded-full ${cistern.needsMaintenance ? 'bg-red-500' : 'bg-green-500'}`}></span>
